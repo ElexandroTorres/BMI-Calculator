@@ -3,11 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/simple_card.dart';
-
-const bottomContainerHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
-const bottomContainerColor = Color(0xFFEB1555);
+import 'constants.dart';
 
 enum Gender { MALE, FEMALE }
 
@@ -17,8 +13,8 @@ class InputScreen extends StatefulWidget {
 }
 
 class _InputScreenState extends State<InputScreen> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
+  Color maleCardColor = kInactiveCardColor;
+  Color femaleCardColor = kInactiveCardColor;
 
   Gender? selectedGender;
 
@@ -41,8 +37,8 @@ class _InputScreenState extends State<InputScreen> {
                       });
                     },
                     cardColor: selectedGender == Gender.MALE
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     cardChild: IconContent(
                       contentIcon: FontAwesomeIcons.mars,
                       contentText: 'MALE',
@@ -58,8 +54,8 @@ class _InputScreenState extends State<InputScreen> {
                     },
                     //cardColor: femaleCardColor,
                     cardColor: selectedGender == Gender.FEMALE
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     cardChild: IconContent(
                       contentIcon: FontAwesomeIcons.venus,
                       contentText: 'FEMALE',
@@ -70,12 +66,13 @@ class _InputScreenState extends State<InputScreen> {
             ),
           ),
           Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: SimpleCard(cardColor: Colors.yellow),
-                ),
-              ],
+            child: SimpleCard(
+              cardColor: kActiveCardColor,
+              cardChild: Column(
+                children: [
+                  Text('Height'),
+                ],
+              ),
             ),
           ),
           Expanded(
