@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bmi_calculator/icon_content.dart';
+import 'package:bmi_calculator/simple_card.dart';
+
+const bottomContainerHeight = 80.0;
+const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xFF111328);
+const bottomContainerColor = Color(0xFFEB1555);
+
+enum Gender { MALE, FEMALE }
 
 class InputScreen extends StatefulWidget {
   @override
@@ -6,6 +17,11 @@ class InputScreen extends StatefulWidget {
 }
 
 class _InputScreenState extends State<InputScreen> {
+  Color maleCardColor = inactiveCardColor;
+  Color femaleCardColor = inactiveCardColor;
+
+  Gender? selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,33 +31,54 @@ class _InputScreenState extends State<InputScreen> {
       body: Column(
         children: [
           Expanded(
-            flex: 1,
             child: Row(
               children: [
                 Expanded(
-                  flex: 1,
-                  child: SimpleCard(cardColor: Colors.green),
+                  child: SimpleCard(
+                    onPress: () {
+                      setState(() {
+                        selectedGender = Gender.MALE;
+                      });
+                    },
+                    cardColor: selectedGender == Gender.MALE
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: IconContent(
+                      contentIcon: FontAwesomeIcons.mars,
+                      contentText: 'MALE',
+                    ),
+                  ),
                 ),
                 Expanded(
-                  flex: 1,
-                  child: SimpleCard(cardColor: Colors.blue),
+                  child: SimpleCard(
+                    onPress: () {
+                      setState(() {
+                        selectedGender = Gender.FEMALE;
+                      });
+                    },
+                    //cardColor: femaleCardColor,
+                    cardColor: selectedGender == Gender.FEMALE
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: IconContent(
+                      contentIcon: FontAwesomeIcons.venus,
+                      contentText: 'FEMALE',
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
           Expanded(
-            flex: 1,
             child: Row(
               children: [
                 Expanded(
-                  flex: 1,
                   child: SimpleCard(cardColor: Colors.yellow),
                 ),
               ],
             ),
           ),
           Expanded(
-            flex: 1,
             child: Row(
               children: [
                 Expanded(
@@ -49,32 +86,12 @@ class _InputScreenState extends State<InputScreen> {
                   child: SimpleCard(cardColor: Colors.blue),
                 ),
                 Expanded(
-                  flex: 1,
                   child: SimpleCard(cardColor: Colors.red),
                 ),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class SimpleCard extends StatelessWidget {
-  final Color cardColor;
-
-  SimpleCard({required this.cardColor});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      //color: Color(0xFF1D1E33),
-      margin: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        //color: Color(0xFF1D1E33),
-        color: cardColor,
-        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
