@@ -15,7 +15,9 @@ class InputScreen extends StatefulWidget {
 class _InputScreenState extends State<InputScreen> {
   Color maleCardColor = kInactiveCardColor;
   Color femaleCardColor = kInactiveCardColor;
+
   int height = 180;
+  int weight = 70;
 
   Gender? selectedGender;
 
@@ -24,6 +26,8 @@ class _InputScreenState extends State<InputScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI Calculator'),
+        centerTitle: true,
+        backgroundColor: Color(0xFF0A0E21),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,18 +94,29 @@ class _InputScreenState extends State<InputScreen> {
                     ],
                   ),
                   Expanded(
-                    child: Slider(
-                      value: height.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
-                      //label: height.round().toString(),
-                      activeColor: Color(0xFFEB1555),
-                      inactiveColor: Color(0xFF8D8E98),
-                      onChanged: (double newHeight) {
-                        setState(() {
-                          height = newHeight.round();
-                        });
-                      },
+                    child: SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        activeTrackColor: Colors.white,
+                        inactiveTrackColor: Color(0xFF8D8E98),
+                        thumbColor: Color(0xFFEB1555),
+                        overlayColor: Color(0x15EB1555),
+                        thumbShape: RoundSliderThumbShape(
+                          enabledThumbRadius: 15.0,
+                        ),
+                        overlayShape: RoundSliderOverlayShape(
+                          overlayRadius: 20.0,
+                        ),
+                      ),
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: 120.0,
+                        max: 220.0,
+                        onChanged: (double newHeight) {
+                          setState(() {
+                            height = newHeight.round();
+                          });
+                        },
+                      ),
                     ),
                   )
                 ],
@@ -113,10 +128,30 @@ class _InputScreenState extends State<InputScreen> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: SimpleCard(cardColor: Colors.blue),
+                  child: SimpleCard(
+                    cardColor: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text('70'),
+                        Row(
+                          children: [
+                            Text('+'),
+                            Text('-'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: SimpleCard(cardColor: Colors.red),
+                  child: SimpleCard(
+                    cardColor: kActiveCardColor,
+                  ),
                 ),
               ],
             ),
