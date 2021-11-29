@@ -13,7 +13,7 @@ class SimpleCard extends StatelessWidget {
       onTap: onPress,
       child: Container(
         child: cardChild,
-        margin: EdgeInsets.all(16),
+        margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: cardColor,
           borderRadius: BorderRadius.circular(10.0),
