@@ -216,6 +216,21 @@ class _InputScreenState extends State<InputScreen> {
               ],
             ),
           ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/result');
+            },
+            child: Container(
+              child: Text(
+                'CALCULATE',
+                style: kNumberTextStyle,
+              ),
+              color: kBottomContainerColor,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: kBottomContainerHeight,
+            ),
+          ),
         ],
       ),
     );
