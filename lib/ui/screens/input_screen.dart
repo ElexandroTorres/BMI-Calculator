@@ -5,6 +5,7 @@ import 'package:bmi_calculator/ui/widgets/icon_content.dart';
 import 'package:bmi_calculator/ui/widgets/simple_card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/ui/widgets/round_icon_button.dart';
+import 'package:bmi_calculator/ui/widgets/bottom_button.dart';
 
 class InputScreen extends StatefulWidget {
   @override
@@ -213,7 +214,8 @@ class _InputScreenState extends State<InputScreen> {
               ],
             ),
           ),
-          GestureDetector(
+          BottomButton(
+            text: 'Calculate',
             onTap: () {
               Navigator.pushNamed(context, '/result', arguments: {
                 'height': height,
@@ -221,16 +223,6 @@ class _InputScreenState extends State<InputScreen> {
                 'gender': selectedGender.toString()
               });
             },
-            child: Container(
-              child: Text(
-                'CALCULATE',
-                style: kNumberTextStyle,
-              ),
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
           ),
         ],
       ),
