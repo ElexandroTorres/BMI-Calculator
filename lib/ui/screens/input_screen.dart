@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:bmi_calculator/icon_content.dart';
-import 'package:bmi_calculator/simple_card.dart';
-import 'constants.dart';
+import 'package:bmi_calculator/ui/widgets/icon_content.dart';
+import 'package:bmi_calculator/ui/widgets/simple_card.dart';
+import 'package:bmi_calculator/constants.dart';
 
 enum Gender { MALE, FEMALE }
 
@@ -28,7 +28,6 @@ class _InputScreenState extends State<InputScreen> {
       appBar: AppBar(
         title: Text('BMI Calculator'),
         centerTitle: true,
-        backgroundColor: Color(0xFF0A0E21),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,7 +58,6 @@ class _InputScreenState extends State<InputScreen> {
                         selectedGender = Gender.FEMALE;
                       });
                     },
-                    //cardColor: femaleCardColor,
                     cardColor: selectedGender == Gender.FEMALE
                         ? kActiveCardColor
                         : kInactiveCardColor,

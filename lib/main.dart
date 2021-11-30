@@ -1,6 +1,6 @@
-import 'package:bmi_calculator/results_screen.dart';
+import 'package:bmi_calculator/ui/screens/results_screen.dart';
 import 'package:flutter/material.dart';
-import 'input_screen.dart';
+import 'ui/screens/input_screen.dart';
 
 void main() => runApp(BMICalculator());
 
@@ -16,21 +16,10 @@ class BMICalculator extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF0A0E21),
         scaffoldBackgroundColor: Color(0xFF0A0E21),
+        appBarTheme: ThemeData.dark().appBarTheme.copyWith(
+              backgroundColor: Color(0xFF0A0E21),
+            ),
       ),
-      /*
-      ThemeData(
-        colorScheme: ColorScheme.light(
-          primary: Color(0xFF0A0E21),
-          secondary: Colors.blue,
-        ),
-        scaffoldBackgroundColor: Color(0xFF0A0E21),
-        textTheme: TextTheme(
-          bodyText2: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
-      */
     );
   }
 }
