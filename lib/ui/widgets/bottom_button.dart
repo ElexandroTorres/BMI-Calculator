@@ -15,9 +15,10 @@ class BottomButton extends StatelessWidget {
         child: Text(
           text,
           style: kNumberTextStyle,
+          textAlign: TextAlign.center,
         ),
         color: kBottomContainerColor,
-        margin: EdgeInsets.only(top: 10.0),
+        margin: EdgeInsets.only(top: 5.0),
         width: double.infinity,
         height: kBottomContainerHeight,
       ),

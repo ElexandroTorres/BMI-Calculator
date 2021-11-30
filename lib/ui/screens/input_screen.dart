@@ -6,6 +6,7 @@ import 'package:bmi_calculator/ui/widgets/simple_card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/ui/widgets/round_icon_button.dart';
 import 'package:bmi_calculator/ui/widgets/bottom_button.dart';
+import 'package:bmi_calculator/calculate_bmi.dart';
 
 class InputScreen extends StatefulWidget {
   @override
@@ -217,10 +218,16 @@ class _InputScreenState extends State<InputScreen> {
           BottomButton(
             text: 'Calculate',
             onTap: () {
+              CalculateBMI bmiCalculator =
+                  CalculateBMI(height: height, weight: weight);
+              String bmi = bmiCalculator.calculateBMI();
+              String result = bmiCalculator.getResult();
+              String description = bmiCalculator.getDescription();
+
               Navigator.pushNamed(context, '/result', arguments: {
-                'height': height,
-                'weight': weight,
-                'gender': selectedGender.toString()
+                'bmi': bmi,
+                'result': result,
+                'description': description
               });
             },
           ),
