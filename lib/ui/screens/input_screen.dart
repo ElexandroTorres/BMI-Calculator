@@ -4,8 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/ui/widgets/icon_content.dart';
 import 'package:bmi_calculator/ui/widgets/simple_card.dart';
 import 'package:bmi_calculator/constants.dart';
-
-enum Gender { MALE, FEMALE }
+import 'package:bmi_calculator/ui/widgets/round_icon_button.dart';
 
 class InputScreen extends StatefulWidget {
   @override
@@ -216,7 +215,11 @@ class _InputScreenState extends State<InputScreen> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/result');
+              Navigator.pushNamed(context, '/result', arguments: {
+                'height': height,
+                'weight': weight,
+                'gender': selectedGender.toString()
+              });
             },
             child: Container(
               child: Text(
@@ -231,27 +234,6 @@ class _InputScreenState extends State<InputScreen> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final IconData? icon;
-  final VoidCallback? onPressed;
-  RoundIconButton({required this.icon, required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed,
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(
-        width: 40.0,
-        height: 40.0,
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
